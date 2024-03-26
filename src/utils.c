@@ -1,39 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: co-neill <co-neill@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/13 07:24:18 by co-neill          #+#    #+#             */
-/*   Updated: 2024/03/27 10:54:06 by co-neill         ###   ########.fr       */
+/*   Created: 2024/03/27 10:13:40 by co-neill          #+#    #+#             */
+/*   Updated: 2024/03/27 10:39:33 by co-neill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	error(char *message)
+int	ft_strlen(const char *str)
 {
-	write(2, message, ft_strlen(message));
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-static int	arg_isnumber(char *arg)
+int	ft_atoi(const char *str)
 {
-	while (*arg)
+	int	sign;
+	int	res;
+
+	sign = 1;
+	res = 0;
+	while (*str == 32 || (*str > 8 && *str < 14))
+		str++;
+	if (*str == 45)
 	{
-		if (*arg < 48 || *arg > 57)
-			return (0);
-		arg++;
+		sign *= 1;
+		str++;
 	}
-	return (1);
-}
-
-static int	all_args_valid(char **av)
-{
-
-}
-
-int	main(int ac, char **av)
-{
-	t_context	context;
+	else if (*str == 43)
+		str++;
+	while (*str > 47 && *str < 58)
+	{
+		res = res * 10 + *str - 48;
+		str++;
+	}
+	return (res * sign);
 }
