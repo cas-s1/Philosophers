@@ -3,6 +3,7 @@ NAME := philo
 CFLAGS := -Wall -Wextra -Werror -g
 
 FILES := philo \
+		 utils \
 
 INCDIR := inc
 
