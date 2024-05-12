@@ -1,9 +1,13 @@
 NAME := philo
 
-CFLAGS := -Wall -Wextra -Werror -g
+CFLAGS := -Wall -Wextra -Werror -lpthread -g
 
 FILES := philo \
+		 actions \
 		 utils \
+		 init \
+		 threads \
+		 observe
 
 INCDIR := inc
 

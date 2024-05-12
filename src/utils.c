@@ -6,7 +6,7 @@
 /*   By: co-neill <co-neill@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:13:40 by co-neill          #+#    #+#             */
-/*   Updated: 2024/03/27 10:39:33 by co-neill         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:55:32 by co-neill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,36 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (res * sign);
+}
+
+unsigned int	get_time_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	msleep(unsigned int milliseconds)
+{
+	unsigned int	start;
+
+	start = get_time_ms();
+	while (get_time_ms() - start < milliseconds)
+		usleep(100);
+}
+
+void	destroy_mutexes(t_context *context)
+{
+	unsigned int	i;
+
+	i = 0;
+	pthread_mutex_destroy(&context->write_lock);
+	pthread_mutex_destroy(&context->meal_lock);
+	pthread_mutex_destroy(&context->dead_lock);
+	while (i < context->philos_number)
+	{
+		pthread_mutex_destroy(&context->forks[i]);
+		i++;
+	}
 }

@@ -6,13 +6,20 @@
 /*   By: co-neill <co-neill@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 07:24:18 by co-neill          #+#    #+#             */
-/*   Updated: 2024/03/28 08:41:43 by co-neill         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:08:50 by co-neill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	error(char *message)
+void	clean_and_exit(char *message, t_context *context, int code)
+{
+	write(1, message, ft_strlen(message));
+	destroy_mutexes(context);
+	exit(code);
+}
+
+static void	error(char *message)
 {
 	write(2, message, ft_strlen(message));
 	exit(1);
@@ -47,10 +54,18 @@ static int	all_args_valid(char **av)
 
 int	main(int ac, char **av)
 {
-	//t_context	context;
-	
+	t_context		context;
+	t_philo			philos[PHILO_MAX];
+	pthread_mutex_t	forks[PHILO_MAX];
+
+	context.philos = philos;
+	context.forks = forks;
 	if (ac != 5 && ac != 6)
 		error("Incorrect number of args\n");
 	if (!all_args_valid(av))
 		error("Args must be positive integers\n");
+	init_context(&context, av);
+	create_threads(&context);
+	clean_and_exit("exited successfully\n", &context, 0);
+	return (0);
 }
