@@ -6,7 +6,7 @@
 /*   By: co-neill <co-neill@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 15:10:00 by co-neill          #+#    #+#             */
-/*   Updated: 2024/05/12 15:59:11 by co-neill         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:57:43 by co-neill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	philosopher_dead(t_philo *philo)
 
 static int	check_dead(t_philo *philos)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	while (i < *philos[0].philos_number)
@@ -44,8 +44,8 @@ static int	check_dead(t_philo *philos)
 
 static int	check_all_ate(t_philo *philos)
 {
-	unsigned int	finished;
-	unsigned int	i;
+	int	finished;
+	int	i;
 
 	finished = 0;
 	i = 0;

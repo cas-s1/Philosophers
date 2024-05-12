@@ -6,12 +6,11 @@
 /*   By: co-neill <co-neill@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:48:00 by co-neill          #+#    #+#             */
-/*   Updated: 2024/05/12 16:18:46 by co-neill         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:01:45 by co-neill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
-
 
 void	display_status(t_philo *philo, char *status)
 {
@@ -19,7 +18,7 @@ void	display_status(t_philo *philo, char *status)
 
 	pthread_mutex_lock(philo->write_lock);
 	time = get_time_ms() - philo->start_time;
-	if (check_dead_flag(philo))
+	if (!check_dead_flag(philo))
 		printf("%d %d %s\n", time, philo->id, status);
 	pthread_mutex_unlock(philo->write_lock);
 }

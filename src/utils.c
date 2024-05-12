@@ -6,7 +6,7 @@
 /*   By: co-neill <co-neill@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 10:13:40 by co-neill          #+#    #+#             */
-/*   Updated: 2024/05/12 15:55:32 by co-neill         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:55:34 by co-neill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	msleep(unsigned int milliseconds)
 
 void	destroy_mutexes(t_context *context)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_destroy(&context->write_lock);

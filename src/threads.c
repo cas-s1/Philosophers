@@ -6,7 +6,7 @@
 /*   By: co-neill <co-neill@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:17:28 by co-neill          #+#    #+#             */
-/*   Updated: 2024/05/12 15:57:07 by co-neill         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:02:05 by co-neill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	*philo_actions(void *ptr)
 	t_philo	*philo;
 
 	philo = (t_philo *) ptr;
-	if (!(philo->id % 2))
+	if (philo->id % 2 == 0)
 		msleep(1);
 	while (!check_dead_flag(philo))
 	{
@@ -40,14 +40,15 @@ static void	*philo_actions(void *ptr)
 int	create_threads(t_context *context)
 {
 	pthread_t		god;
-	unsigned int	i;
+	int				i;
 
 	if (pthread_create(&god, NULL, &observe, context->philos))
 		clean_and_exit("thread creation bad\n", context, 1);
 	i = 0;
 	while (i < context->philos_number)
 	{
-		if (pthread_create(&context->philos[i].thread, NULL, &philo_actions, &context->philos[i]))
+		if (pthread_create(&context->philos[i].thread, NULL, \
+					&philo_actions, &context->philos[i]))
 			clean_and_exit("thread creation bad\n", context, 1);
 		i++;
 	}

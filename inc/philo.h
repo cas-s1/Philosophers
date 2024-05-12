@@ -6,7 +6,7 @@
 /*   By: co-neill <co-neill@student.42adel.org.au>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 07:11:08 by co-neill          #+#    #+#             */
-/*   Updated: 2024/05/12 16:07:20 by co-neill         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:54:54 by co-neill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_philo
 	int				meals_eaten;
 	int				last_meal;
 	unsigned int	start_time;
-	unsigned int	*philos_number;
+	int				*philos_number;
 	unsigned int	*time_to_die;
 	unsigned int	*time_to_eat;
 	unsigned int	*time_to_sleep;
@@ -48,7 +48,7 @@ typedef struct s_philo
 typedef struct s_context
 {
 	t_philo			*philos;
-	unsigned int	philos_number;
+	int				philos_number;
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
